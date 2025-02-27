@@ -1,0 +1,9 @@
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show p-2 {% if message.tags == 'error' %}alert-full-width{% endif %}" role="alert" style="font-size: 14px; padding: 8px;">
+      <ul class="mb-0">
+        <li>{{ message }}</li>
+      </ul>
+    </div>
+  {% endfor %}
+{% endif %}

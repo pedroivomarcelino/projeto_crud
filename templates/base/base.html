@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>OS System</title>
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/ionicons@5.5.2/dist/css/ionicons.min.css" />
+  </head>
+
+  <body id="page-top">
+    <div id="wrapper">
+      {% include 'partials/_sidebar.html' %}
+
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Menu superior -->
+        <div id="content">
+          {% include 'partials/_topbar.html' %}
+
+          <!-- Conteudo principal exido na pagina -->
+          <div class="container-fluid">
+            {% block content %}
+
+            {% endblock %}
+          </div>
+          <!-- /.container-fluid -->
+        </div>
+        <!-- rodape -->
+        {% include 'partials/_footer.html' %}
+        <!-- End of Main Content -->
+      </div>
+
+      <!-- End of Content Wrapper -->
+    </div>
+
+    <!-- Modal de Logout -->
+    {% include 'partials/_logoutModal.html' %}
+    <!-- jQuery via CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery e Bootstrap devem estar antes de qualquer outro script -->
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Adicionando de volta o easing (caso seja necessário) -->
+    <script src="{% static 'jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Restante dos scripts -->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+    <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+
+    <!-- Ionicons (caso precise dos ícones) -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script>
+      console.log('jQuery versão:', jQuery.fn.jquery)
+      console.log('Bootstrap modal disponível:', typeof bootstrap !== 'undefined' ? 'Sim' : 'Não')
+    </script>
+  </body>
+</html>

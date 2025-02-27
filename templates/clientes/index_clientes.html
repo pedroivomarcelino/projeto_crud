@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  {% include 'partials/_exclusaoModal.html' %}
+  {% include 'partials/_alertas.html' %}
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Nome do cliente</th>
+              <th>CPF/CNPJ</th>
+              <th>Endereço</th>
+              <th>Celular</th>
+              <th>E-mail</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for cliente in clientes %}
+              <tr>
+                <td>{{ cliente.nome_cliente }}</td>
+                <td>{{ cliente.cpf_cnpj_cliente }}</td>
+                <td>{{ cliente.endereco_cliente }}</td>
+                <td>{{ cliente.celular_cliente }}</td>
+                <td>{{ cliente.email_cliente }}</td>
+                <td class="text-center">
+                  <div class="d-flex justify-content-center" style="gap: 3px; flex-wrap: nowrap;">
+                    <a href="{% url 'visualizar-cliente' id=cliente.id %}" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="right" title="Visualizar"><ion-icon name="eye-outline"></ion-icon></a>
+                    <a href="{% url 'editar-cliente' id=cliente.id %}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Editar"><ion-icon name="create-outline"></ion-icon></a>
+                    <a data-toggle="modal" data-target="#excluirClienteModal" class="btn btn-danger btn-sm" data-placement="right" title="Excluir"><ion-icon name="trash-outline"></ion-icon></a>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+
+  {% include 'partials/_alertas.html' %}
+
+  <form class="row g-3" method="POST" action="{% url 'inserir-cliente' %}">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="col-md-6">
+      <label for="nome_cliente" class="form-label">Nome</label>
+      <input type="text" name="nome_cliente" class="form-control" id="nome_cliente" value="{{ cliente.nome_cliente }}" disabled/>
+    </div>
+
+    <div class="col-md-3">
+      <label for="cpf_cnpj_cliente" class="form-label">CPF</label>
+      <input type="text" name="cpf_cnpj_cliente" class="form-control" id="cpf_cnpj_cliente" value="{{ cliente.cpf_cnpj_cliente }}" disabled/>
+    </div>
+
+    <div class="col-md-3">
+      <label for="rg_cliente" class="form-label">RG</label>
+      <input type="text" name="rg_cliente" class="form-control" id="rg_cliente" value="{{ cliente.rg_cliente }}" disabled/>
+    </div>
+
+    <div class="col-6">
+      <label for="endereco_cliente" class="form-label">Endereço</label>
+      <input type="text" name="endereco_cliente" class="form-control" id="endereco_cliente" value="{{ cliente.endereco_cliente }}" disabled/>
+    </div>
+
+    <div class="col-2">
+        <label for="cep_cliente" class="form-label">CEP</label>
+        <input type="text" name="cep_cliente" class="form-control" id="cep_cliente" value="{{ cliente.cep_cliente }}" disabled/>
+      </div>
+
+    <div class="col-2">
+      <label for="numero_cliente" class="form-label">Número</label>
+      <input type="text" name="numero_cliente" class="form-control" id="numero_cliente" value="{{ cliente.numero_cliente }}" disabled/>
+    </div>
+
+    <div class="col-2">
+      <label for="complemento_cliente" class="form-label">Complemento</label>
+      <input type="text" name="complemento_cliente" class="form-control" id="complemento_cliente" value="{{ cliente.complemento_cliente }}" disabled/>
+    </div>
+
+    <div class="col-3">
+      <label for="bairro_cliente" class="form-label">Bairro</label>
+      <input type="text" name="bairro_cliente" class="form-control" id="bairro_cliente" value="{{ cliente.bairro_cliente }}" disabled/>
+    </div>
+
+    <div class="col-3">
+        <label for="municipio_cliente" class="form-label">Município</label>
+        <input type="text" name="municipio_cliente" class="form-control" id="municipio_cliente" value="{{ cliente.municipio_cliente }}" disabled/>
+    </div>
+
+    <div class="col-3">
+        <label for="cidade_cliente" class="form-label">Cidade</label>
+        <input type="text" name="cidade_cliente" class="form-control" id="cidade_cliente" value="{{ cliente.cidade_cliente }}" disabled/>
+    </div>
+
+    <div class="col-3">
+        <label for="estado_cliente" class="form-label">Estado</label>
+        <input type="text" name="estado_cliente" class="form-control" id="estado_cliente" value="{{ cliente.estado_cliente }}" disabled/>
+    </div>
+
+    <div class="col-3">
+        <label for="telefone_cliente" class="form-label">Telefone</label>
+        <input type="text" name="telefone_cliente" class="form-control" id="telefone_cliente" value="{{ cliente.telefone_cliente }}" placeholder="21 9999-9999" disabled/>
+    </div>
+
+    <div class="col-3">
+        <label for="celular_cliente" class="form-label">Celular</label>
+        <input type="text" name="celular_cliente" class="form-control" id="celular_cliente" value="{{ cliente.celular_cliente }}" placeholder="21 99999-9999" disabled/>
+    </div>
+
+    <div class="col-3">
+        <label for="email_cliente" class="form-label">E-mail</label>
+        <input type="email" name="email_cliente" class="form-control" id="email_cliente" value="{{ cliente.email_cliente }}" placeholder="email@email.com" disabled/>
+    </div>
+
+    <div class="col-12">
+      <a href="{% url 'editar-cliente' id=cliente.id %}" class="btn btn-primary mt-2">Editar</a>
+    </div>
+
+  </form>
+{% endblock %}
