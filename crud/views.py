@@ -68,3 +68,10 @@ def updateClientes(request, id):
         form = ClienteForm(instance=cliente)
         
     return redirect('cliente-index')    
+
+#metodo para exclusao de cliente
+def excluirCliente(request, id):
+    cliente = Cliente.objects.get(id=id)
+    cliente.delete()
+    messages.success(request, "Cliente excluído com sucesso!")
+    return redirect('cliente-index')
