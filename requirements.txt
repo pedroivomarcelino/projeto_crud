@@ -1,7 +1,4 @@
 asgiref==3.8.1
-distlib==0.3.9
 Django==5.1.6
-filelock==3.16.1
-platformdirs==4.3.6
 sqlparse==0.5.3
-virtualenv==20.27.1
+validate-docbr==1.10.0
