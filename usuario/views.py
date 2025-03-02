@@ -3,10 +3,14 @@ from usuario.forms import UsuarioForm
 from django.contrib import messages
 from django.contrib import auth
 from django.contrib.auth.models import User
+from usuario.models import Usuario
 
 def cadastrarUsuario(request):
     return render(request, 'usuarios/cadastrar_usuarios.html')
 
+def indexUsuarios(request):
+    usuarios = Usuario.objects.all()
+    return render(request, 'usuarios/index_usuarios.html', {'usuarios': usuarios})
 
 def inserirUsuario(request):
     form = UsuarioForm()
@@ -25,7 +29,12 @@ def inserirUsuario(request):
                     messages.error(request, f"{form.fields[field].label}: {error}", extra_tags='danger')
                     
     return redirect('novo-usuario')
-                
+            
+def visualizarUsuario(request, id):
+    usuarios = Usuario.objects.filter(id=id)
+    return render(request, 'usuarios/visualizar_usuarios.html', {'usuarios' : usuarios})
+
+
             
             
     

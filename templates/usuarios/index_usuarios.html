@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  {% include 'partials/_alertas.html' %}
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Nome do usuário</th>
+              <th>Login</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for usuario in usuarios %}
+              <tr>
+                <td>{{ usuario.nome_usuario }}</td>
+                <td>{{ usuario.login }}</td>
+                <td class="text-center">
+                  <div class="d-flex justify-content-center" style="gap: 3px; flex-wrap: nowrap;">
+                    <a href="{% url 'visualizar-usuario' id=usuario.id %}" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="right" title="Visualizar"><ion-icon name="eye-outline"></ion-icon></a>
+                    <a href="#" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Editar"><ion-icon name="create-outline"></ion-icon></a>
+                    <a data-toggle="modal" data-target="#" class="btn btn-danger btn-sm" data-placement="right" title="Excluir"><ion-icon name="trash-outline"></ion-icon></a>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
