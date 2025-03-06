@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from usuario.forms import UsuarioForm
 from django.contrib import messages
 from django.contrib import auth
@@ -34,6 +34,28 @@ def visualizarUsuario(request, id):
     usuarios = Usuario.objects.filter(id=id)
     return render(request, 'usuarios/visualizar_usuarios.html', {'usuarios' : usuarios})
 
+def editarUsuario(request, id):
+    usuarios = Usuario.objects.filter(id=id)
+    return render(request, 'usuarios/editar_usuarios.html', {'usuarios' : usuarios})
+
+def updateUsuario(request, id):
+    usuarios = get_object_or_404(Usuario, id=id)
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST, instance=usuarios)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Usuário atualizado com sucesso!')
+            return redirect('usuario-index')
+        else:
+            messages.error(request, 'Erro ao atualizar o usuário. Verifique os dados e tente novamente.')
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{form.fields[field].label}: {error}", extra_tags='danger')
+        return redirect('editar-usuario', id=id)
+    else:
+        form = UsuarioForm(instance=usuarios)
+
+    return redirect('usuario-index')
 
             
             

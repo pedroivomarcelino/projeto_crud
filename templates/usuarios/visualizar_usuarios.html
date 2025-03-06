@@ -19,12 +19,12 @@
       </div>
 
       <div class="col-md-3">
-        <label for="senha" class="form-label">password</label>
+        <label for="senha" class="form-label">Senha</label>
         <input type="password" name="senha" class="form-control" id="senha" value="{{ usuario.senha }}" required disabled />
       </div>
 
       <div class="col-12">
-        <a href="#" type="submit" class="btn btn-primary mt-2">Editar</a>
+        <a href="{% url 'editar-usuario' id=usuario.id %}" type="submit" class="btn btn-primary mt-2">Editar</a>
       </div>
     {% endfor %}
   </form>
