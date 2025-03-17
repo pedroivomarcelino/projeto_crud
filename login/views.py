@@ -39,4 +39,6 @@ def logar(request):
     
     return render(request, 'login/login.html')
     
-        
+def logout(request):
+    request.session.clear()
+    return redirect('login')
