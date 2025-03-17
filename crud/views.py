@@ -3,14 +3,23 @@ from crud.forms import ClienteForm
 from django.contrib import messages
 from crud.models import Cliente
 
+
 #view da página inicial
 def index(request):
-    return render(request, 'index.html')
+    if request.session.get('usuario_logado'):
+        return render(request, 'index.html')
+    else:
+        return redirect('login')
+
 
 #view de clientes
+
 #carregar o form de cadastro de clientes
 def cadastrarCliente(request):
-    return render(request, 'clientes/cadastrar_clientes.html')
+    if request.session.get('usuario_logado'):
+        return render(request, 'clientes/cadastrar_clientes.html')
+    else:
+        return redirect('login')
 
 #funcao para inserir novos clientes no banco de dados
 def inserirCliente(request):

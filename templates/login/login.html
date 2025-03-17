@@ -34,12 +34,14 @@
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Bem vindo de volta!</h1>
                     </div>
-                    <form class="user">
+                    {% include 'partials/_alertas.html' %}
+                    <form class="user" method="POST" action="{% url 'logar' %}">
+                      {% csrf_token %}
                       <div class="form-group">
-                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Informe o e-mail de login" />
+                        <input type="email" class="form-control form-control-user" id="login" name="login" aria-describedby="emailHelp" placeholder="Informe o e-mail de login" />
                       </div>
                       <div class="form-group">
-                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Informe a senha" />
+                        <input type="password" class="form-control form-control-user" id="senha" name="senha" placeholder="Informe a senha" />
                       </div>
                       <div class="form-group">
                         <div class="custom-control custom-checkbox small">
@@ -47,7 +49,7 @@
                           <label class="custom-control-label" for="customCheck">Lembrar de mim</label>
                         </div>
                       </div>
-                      <a href="#" class="btn btn-primary btn-user btn-block">Login</a>
+                      <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
                     </form>
                   </div>
                 </div>
