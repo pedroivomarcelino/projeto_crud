@@ -57,6 +57,12 @@ def updateUsuario(request, id):
 
     return redirect('usuario-index')
 
+def excluirUsuario(request, id):
+    usuarios = Usuario.objects.filter(id=id)
+    usuarios.delete()
+    messages.success(request, 'Usuário excluído com sucesso!')
+    return redirect('usuario-index')
+
             
             
     
