@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def cadastrarProdutos(request):
+    return render(request, 'estoque/cadastrar_produto.html')

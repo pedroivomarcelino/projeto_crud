@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('crud.urls')),
     path('', include('login.urls')),  
     path('', include('usuario.urls')),
+    path('', include('estoque.urls')),
 ]

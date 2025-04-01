@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crud',
     'login',
     'usuario',
+    'estoque',
 ]
 
 MIDDLEWARE = [
