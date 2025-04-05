@@ -4,7 +4,7 @@
 
     {% include 'partials/_alertas.html' %}
 
-    <form  method="POST" action="#">
+    <form  method="POST" action="{% url 'inserir-produto' %}">
 
     {% csrf_token %}
     {{ form.as_p }}
@@ -26,7 +26,7 @@
     <div class="form-row">
         <div class="col-md-3">
             <label for="modelo_produto" class="form-label">Modelo do Produto</label>
-            <input type="text" name="modelo_produto" class="form-control" id="modelo_produto" required/>
+            <input type="text" name="modelo_produto" class="form-control" id="modelo_produto"/>
         </div>
 
         <div class="col-md-3">
