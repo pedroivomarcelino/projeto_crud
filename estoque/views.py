@@ -9,6 +9,11 @@ def cadastrarProdutos(request):
     return render(request, 'estoque/cadastrar_produto.html')
 
 
+#carregar o form de vizualizacao dos produtos cadastrados no estoque
+def vizualizarProdutos(request, id):
+   produtos = Produto.objects.get(id=id)
+   return render(request, 'estoque/visualisar_produto.html', {'produtos': produtos})
+
 
 #funcao para inserir novos produtos no banco de dados
 def inserirProduto(request):
