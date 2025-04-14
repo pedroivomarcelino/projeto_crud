@@ -50,7 +50,7 @@
     <div class="form-row">
         <div class="col-4">
             <label for="descricao_produto" class="form-label">Descrição do Produto</label>
-            <textarea id="descricao_produto" name="descricao_produto" rows="5" cols="50"  disabled> {{produtos.descricao_produto}} </textarea>
+            <textarea  id="descricao_produto" name="descricao_produto" rows="5" cols="50"  disabled> {{produtos.descricao_produto}} </textarea>
             
         </div>
     </div>
@@ -58,7 +58,7 @@
     <div class="form-row">
         <div class="col-12">
             
-            <a href="#" class="btn btn-success mt-2">Editar</a>
+            <a href="{% url 'editar-produtos' id=produtos.id %}" class="btn btn-success mt-2">Editar</a>
         </div>
     </div>
     
