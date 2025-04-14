@@ -89,7 +89,7 @@ def updateClientes(request, id):
         else:
             form = ClienteForm(instance=cliente)
             
-        return redirect('cliente-index')    
+        return redirect('visualizar-cliente', id=id)    
     else:
         return redirect('login')
 

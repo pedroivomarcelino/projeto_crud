@@ -63,5 +63,5 @@ def updateProdutos(request, id):
     else:
         form = ProdutoForm(instance=produtos)
         
-    return redirect('editar-produtos', id=id)
+    return redirect('visualizar-produtos', id=id) 
                     
