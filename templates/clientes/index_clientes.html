@@ -13,7 +13,7 @@
       <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
-            <tr>
+            <tr style="text-align: center;">
               <th>Nome do cliente</th>
               <th>CPF/CNPJ</th>
               <th>Endereço</th>
@@ -24,7 +24,7 @@
           </thead>
           <tbody>
             {% for cliente in clientes %}
-              <tr>
+              <tr style="text-align: center;">
                 <td>{{ cliente.nome_cliente }}</td>
                 <td>{{ cliente.cpf_cnpj_cliente }}</td>
                 <td>{{ cliente.endereco_cliente }}</td>
