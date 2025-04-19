@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  
+  <!-- incluindo os alertas -->
+  {% include 'partials/_alertas.html' %}
+  <!-- chamando o modal de exclusao -->
+  {% include 'partials/_exclusaoModal.html' %}
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Código do Produto</th>
+              <th>Nome do Produto</th>
+              <th>Fabricante</th>
+              <th>Valor</th>
+              <th>Quantidade</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for produto in produtos %}
+              <tr>
+                <td>{{ produto.codigo_produto }}</td>
+                <td>{{ produto.nome_produto }}</td>
+                <td>{{ produto.fabricante_produto }}</td>
+                <td>{{ produto.preco_produto }}</td>
+                <td>{{ produto.quantidade_produto }}</td>
+                <td class="text-center">
+                  <div class="d-flex justify-content-center" style="gap: 3px; flex-wrap: nowrap;">
+                    <a href="#" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="right" title="Visualizar"><ion-icon name="eye-outline"></ion-icon></a>
+                    <a href="#" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Editar"><ion-icon name="create-outline"></ion-icon></a>
+                    <a  data-toggle="modal" data-target="#" class="btn btn-danger btn-sm" data-placement="right" title="Excluir"><ion-icon name="trash-outline"></ion-icon></a>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

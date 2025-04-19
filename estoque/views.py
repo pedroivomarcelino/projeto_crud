@@ -6,62 +6,85 @@ from estoque.models import Produto
 
 #carregar o form de cadastrar novos produtos no estoque
 def cadastrarProdutos(request):
-    return render(request, 'estoque/cadastrar_produto.html')
-
+    
+    if request.session.get('usuario_logado'):
+        return render(request, 'estoque/cadastrar_produto.html')
+    else:
+        return redirect('login')
 
 #carregar o form de vizualizacao dos produtos cadastrados no estoque
 def vizualizarProdutos(request, id):
-   produtos = Produto.objects.get(id=id)
-   return render(request, 'estoque/visualisar_produto.html', {'produtos': produtos})
 
+    if request.session.get('usuario_logado'):
+        
+        produtos = Produto.objects.get(id=id)
+        return render(request, 'estoque/visualisar_produto.html', {'produtos': produtos})
+    else:
+        return redirect('login')
 
 #carrega o form de edicao de produtos
 def editarProdutos(request, id):
-    produtos = Produto.objects.get(id=id)
-    return render(request, 'estoque/editar_produto.html', {'produtos': produtos})
+    
+    if request.session.get('usuario_logado'):
+        produtos = Produto.objects.get(id=id)
+        return render(request, 'estoque/editar_produto.html', {'produtos': produtos})
+    else:
+        return redirect('login')
+    
 
+#funcao para recuperar todos os produtos cadastrados
+def listarProdutos(request):
+    if request.session.get('usuario_logado'):
+        produtos = Produto.objects.all()
+        return render(request, 'estoque/index_estoque.html', {'produtos': produtos})
+    else:
+        return redirect('login')
 
 #funcao para inserir novos produtos no banco de dados
 def inserirProduto(request):
 
-    if request.method == 'POST':
-        
-        form = ProdutoForm(request.POST)
-        
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Produto cadastrado com sucesso!")
-        
-        else:
-            messages.error(request, "Erro ao cadastrar o produto. Verifique os dados e tente novamente.")
+    if request.session.get('usuario_logado'):
+        if request.method == 'POST':
+            
+            form = ProdutoForm(request.POST)
+            
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Produto cadastrado com sucesso!")
+            
+            else:
+                messages.error(request, "Erro ao cadastrar o produto. Verifique os dados e tente novamente.")
 
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{form.fields[field].label}: {error}", extra_tags='danger')
-                    
-    return redirect('cadastrar-produtos')
-
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{form.fields[field].label}: {error}", extra_tags='danger')
+                        
+        return redirect('cadastrar-produtos')
+    else:
+        return redirect('login')
 
 #funcao para atualizar os produtos cadastrados no banco de dados
 def updateProdutos(request, id):
     
-    produtos = get_object_or_404(Produto, id=id)
-    
-    if request.method == 'POST':
-     
-        form = ProdutoForm(request.POST, instance=produtos)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Produto atualizado com sucesso!")
-        else:
-            messages.error(request, "Erro ao atualizar o produto. Verifique os dados e tente novamente.")
-            for field, errors in form.errors.items():
-                for error in errors:
-                    messages.error(request, f"{form.fields[field].label}: {error}", extra_tags='danger')
-                    return redirect('editar-produtos', id=id)
-    
-    else:
-        form = ProdutoForm(instance=produtos)
+    if request.session.get('usuario_logado'):
+        produtos = get_object_or_404(Produto, id=id)
         
-    return redirect('visualizar-produtos', id=id) 
-                    
+        if request.method == 'POST':
+        
+            form = ProdutoForm(request.POST, instance=produtos)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Produto atualizado com sucesso!")
+            else:
+                messages.error(request, "Erro ao atualizar o produto. Verifique os dados e tente novamente.")
+                for field, errors in form.errors.items():
+                    for error in errors:
+                        messages.error(request, f"{form.fields[field].label}: {error}", extra_tags='danger')
+                        return redirect('editar-produtos', id=id)
+        
+        else:
+            form = ProdutoForm(instance=produtos)
+            
+        return redirect('visualizar-produtos', id=id) 
+    else:
+        return redirect('login')             
