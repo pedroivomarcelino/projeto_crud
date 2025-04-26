@@ -32,8 +32,8 @@
                 <td>{{ produto.quantidade_produto }}</td>
                 <td class="text-center">
                   <div class="d-flex justify-content-center" style="gap: 3px; flex-wrap: nowrap;">
-                    <a href="#" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="right" title="Visualizar"><ion-icon name="eye-outline"></ion-icon></a>
-                    <a href="#" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Editar"><ion-icon name="create-outline"></ion-icon></a>
+                    <a href="{% url 'visualizar-produtos' id=produto.id %}" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="right" title="Visualizar"><ion-icon name="eye-outline"></ion-icon></a>
+                    <a href="{% url 'editar-produtos' id=produto.id %}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Editar"><ion-icon name="create-outline"></ion-icon></a>
                     <a  data-toggle="modal" data-target="#" class="btn btn-success btn-sm" data-placement="right" title="Movimentar Estoque"><ion-icon name="swap-vertical-outline"></ion-icon></a>
                     <a  data-toggle="modal" data-target="#" class="btn btn-danger btn-sm" data-placement="right" title="Excluir"><ion-icon name="trash-outline"></ion-icon></a>
                   </div>
