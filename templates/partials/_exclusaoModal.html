@@ -1,5 +1,6 @@
 {% load static %}
 
+<!-- Modal de Exclusão de clientes -->
 {% for cliente in clientes %}
   <!-- Modal de Exclusão de clientes -->
   <div class="modal fade" id="excluirClienteModal{{ cliente.id }}" tabindex="-1" role="dialog">
@@ -21,6 +22,7 @@
   </div>
 {% endfor %}
 
+<!-- Modal de Exclusão de usuarios -->
 {% for usuario in usuarios %}
   <!-- Modal de Exclusão de usuarios -->
   <div class="modal fade" id="excluirUsuarioModal{{ usuario.id }}" tabindex="-1" role="dialog">
@@ -35,6 +37,28 @@
         </div>
         <div class="modal-footer">
           <a class="btn btn-danger" href="{% url 'excluir-usuario' id=usuario.id %}">Excluir</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+
+<!-- Modal de Exclusão de Produtos do estoque-->
+{% for produto in produtos %}
+  <!-- Modal de Exclusão de usuarios -->
+  <div class="modal fade" id="excluirProdutoModal{{ produto.id }}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Exclusão</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Tem certeza que deseja excluir <strong>{{ produto.nome_produto }}</strong> do estoque? ?</p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-danger" href="{% url 'delete-produto' id=produto.id %}">Excluir</a>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
         </div>
       </div>

@@ -88,3 +88,24 @@ def updateProdutos(request, id):
         return redirect('visualizar-produtos', id=id) 
     else:
         return redirect('login')             
+    
+    
+#excluir um produto do estoque
+def deleteProduto(request, id):
+    
+    if request.session.get('usuario_logado'):
+        
+        produtos = get_object_or_404(Produto, id=id)
+        if produtos.quantidade_produto > 0:
+            messages.error(request, f"Produto não pode ser excluído, pois possui {produtos.quantidade_produto} unidades, estoque precisa estar zerado para excluir!", extra_tags='danger')
+
+            return redirect('listar-produtos')
+        
+        else:
+            request.method == 'POST'
+            produtos.delete()
+            messages.success(request, "Produto excluído com sucesso!")
+            return redirect('listar-produtos')
+
+    else:
+        return redirect('login')

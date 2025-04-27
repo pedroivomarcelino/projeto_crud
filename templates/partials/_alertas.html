@@ -1,9 +1,16 @@
 {% if messages %}
-  {% for message in messages %}
-    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show p-2 {% if message.tags == 'error' %}alert-full-width{% endif %}" role="alert" style="font-size: 14px; padding: 8px;">
-      <ul class="mb-0">
-        <li>{{ message }}</li>
-      </ul>
-    </div>
-  {% endfor %}
+  <div style="width: 100%; padding: 0 20px; margin-bottom: 20px;">
+    {% for message in messages %}
+      <div 
+        class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show" 
+        role="alert" 
+        style="width: 100%; font-size: 1rem; padding: 10px 20px;"
+      >
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="top: 5px; right: 10px;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  </div>
 {% endif %}
