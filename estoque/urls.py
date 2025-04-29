@@ -1,5 +1,5 @@
 from django.urls import path
-from estoque.views import cadastrarProdutos, inserirProduto, vizualizarProdutos, editarProdutos, updateProdutos, listarProdutos, deleteProduto
+from estoque.views import cadastrarProdutos, inserirProduto, vizualizarProdutos, editarProdutos, updateProdutos, listarProdutos, deleteProduto, entradaEstoque
 
 urlpatterns = [
     path('cadastrar-produtos', cadastrarProdutos, name='cadastrar-produtos'),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('upadate-produtos/<int:id>', updateProdutos, name='update-produtos'),
     path('listar-produtos', listarProdutos, name='listar-produtos'),
     path('delete-produto/<int:id>', deleteProduto, name='delete-produto'),
+    path('entrada-estoque/<int:id>', entradaEstoque, name='entrada-estoque'),
 ]

@@ -109,3 +109,19 @@ def deleteProduto(request, id):
 
     else:
         return redirect('login')
+    
+    
+#funcao que calcula a entrada no estoque
+def entradaEstoque(request, id):
+    if request.session.get('usuario_logado'):
+        
+        produtos = get_object_or_404(Produto, id=id)
+        if request.method == 'POST':
+            quantidade_entrada = int(request.POST.get('quantidade_produto'))
+            produtos.quantidade_produto += quantidade_entrada
+            produtos.save()
+            messages.success(request, "Entrada no estoque realizada com sucesso!")
+            return redirect('listar-produtos')
+        
+    else:
+        return redirect('login')
