@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'login',
     'usuario',
     'estoque',
+    'funcionarios',
 ]
 
 MIDDLEWARE = [
