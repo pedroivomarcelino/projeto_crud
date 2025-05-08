@@ -15,35 +15,40 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item active">
-        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-            aria-controls="collapsePages">
+    <!-- Menu Cadastros -->
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseCadastros"
+            aria-expanded="false" aria-controls="collapseCadastros">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Menu</span>
+            <span>Cadastros</span>
         </a>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item active">
-        
-        <div id="collapsePages" class="collapse show" aria-labelledby="headingPages"
-            data-parent="#accordionSidebar">
+        <div id="collapseCadastros"
+            class="collapse {% if '/cadastrar-' in request.path %}show{% endif %}">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Cadastros</h6>
                 <a class="collapse-item" href="{% url 'cadastrar-cliente' %}">Cadastrar Clientes</a>
                 <a class="collapse-item" href="{% url 'cadastrar-produtos' %}">Cadastrar Produtos</a>
                 <a class="collapse-item" href="{% url 'cadastrar-funcionarios' %}">Cadastrar Funcionários</a>
                 <a class="collapse-item" href="{% url 'novo-usuario' %}">Cadastrar Usuários</a>
+            </div>
+        </div>
+    </li>
 
-                <div class="collapse-divider"></div>
-                <h6 class="collapse-header">Principais</h6>
+    <!-- Menu Principais -->
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePrincipais"
+            aria-expanded="false" aria-controls="collapsePrincipais">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Principais</span>
+        </a>
+        <div id="collapsePrincipais"
+            class="collapse {% if '/cliente' in request.path or '/usuario' in request.path or '/listar-' in request.path %}show{% endif %}">
+            <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{% url 'cliente-index' %}">Clientes</a>
                 <a class="collapse-item" href="{% url 'usuario-index' %}">Usuários</a>
                 <a class="collapse-item" href="{% url 'listar-produtos' %}">Estoque</a>
             </div>
         </div>
     </li>
-    
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
