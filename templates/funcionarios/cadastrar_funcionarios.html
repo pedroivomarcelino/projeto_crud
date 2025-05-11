@@ -4,7 +4,7 @@
 
     {% include 'partials/_alertas.html' %}
 
-    <form  method="POST" action="#">
+    <form  method="POST" action="{% url 'inserir-funcionario' %}">
 
     {% csrf_token %}
     {{ form.as_p }}
@@ -32,14 +32,24 @@
             <input type="text" name="endereco_funcionario" class="form-control" id="endereco_funcionario" required/>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-2">
+            <label for="cep_funcionario" class="form-label">CEP</label>
+            <input type="text" name="cep_funcionario" class="form-control" id="cep_funcionario" required/>
+        </div>
+
+        <div class="col-md-2">
             <label for="bairro_funcionario" class="form-label">Bairro</label>
             <input type="text" name="bairro_funcionario" class="form-control" id="bairro_funcionario" required/>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-2">
             <label for="cidade_funcionario" class="form-label">Cidade</label>
             <input type="text" name="cidade_funcionario" class="form-control" id="cidade_funcionario" required/>
+        </div>
+
+        <div class="col-md-2">
+            <label for="estado_funcionario" class="form-label">Estado</label>
+            <input type="text" name="estado_funcionario" class="form-control" id="estado_funcionario" required/>
         </div>
     </div>
 
@@ -55,22 +65,21 @@
         </div>
 
         <div class="col-2">
-            <label for="comissao_funcionario" class="form-label">Comissão</label>
-            <input type="number" name="comissao_funcionario"  class="form-control" id="comissao_funcionario" required/>
+            <label for="comissao_funcionario" class="form-label">Comissão (%)</label>
+            <input type="number" name="comissao_funcionario"  class="form-control" id="comissao_funcionario" placeholder="Ex: 10" required/>
         </div>
 
         <div class="col-2">
             <label for="cargo_funcionario">Cargo</label>
-            <select id="cargo_funcionario" class="form-control" required>
-              <option selected></option>
-              <option value="administrativo">Administrativo</option>
+            <select name="cargo_funcionario" id="cargo_funcionario" class="form-control" required>
+              <option value="administrativo" selected>Administrativo</option>
               <option value="vendedor">Vendedor</option>
             </select>
         </div>
 
         <div class="col-2">
             <label for="status_funcionario">Status</label>
-            <select id="status_funcionario" class="form-control" required>
+            <select name="status_funcionario" id="status_funcionario" class="form-control" required>
               <option value="ativo" selected>Ativo</option>
             </select>
         </div>
