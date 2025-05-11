@@ -1,0 +1,96 @@
+{%  extends 'base/base.html' %}
+
+{% block content %}
+
+    {% include 'partials/_alertas.html' %}
+
+    <form  method="POST" action="#">
+
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <div class="form-row">
+        <div class="col-md-4">
+            <label for="nome_funcionario" class="form-label">Nome do Funcionário</label>
+            <input type="text" name="nome_funcionario" class="form-control" id="nome_funcionario" disabled required value="{{ funcionarios.nome_funcionario }}"/>
+        </div>
+   
+        <div class="col-md-4">
+            <label for="cpf_funcionario" class="form-label">CPF</label>
+            <input type="text" name="cpf_funcionario" class="form-control" id="cpf_funcionario" value="{{ funcionarios.cpf_funcionario }}" disabled required />
+        </div>
+
+        <div class="col-md-4">
+            <label for="rg_funcionario" class="form-label">RG</label>
+            <input type="text" name="rg_funcionario" class="form-control" id="rg_funcionario" disabled value="{{ funcionarios.rg_funcionario }}" required />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-md-4">
+            <label for="endereco_funcionario" class="form-label">Endereço</label>
+            <input type="text" name="endereco_funcionario" class="form-control" id="endereco_funcionario" required disabled value="{{ funcionarios.endereco_funcionario }}" />
+        </div>
+
+        <div class="col-md-2">
+            <label for="cep_funcionario" class="form-label">CEP</label>
+            <input type="text" name="cep_funcionario" class="form-control" id="cep_funcionario" required disabled value="{{ funcionarios.cep_funcionario }}" />
+        </div>
+
+        <div class="col-md-2">
+            <label for="bairro_funcionario" class="form-label">Bairro</label>
+            <input type="text" name="bairro_funcionario" class="form-control" id="bairro_funcionario" required disabled value="{{ funcionarios.bairro_funcionario }}" />
+        </div>
+
+        <div class="col-md-2">
+            <label for="cidade_funcionario" class="form-label">Cidade</label>
+            <input type="text" name="cidade_funcionario" class="form-control" id="cidade_funcionario" required disabled value="{{ funcionarios.cidade_funcionario}}"/>
+        </div>
+
+        <div class="col-md-2">
+            <label for="estado_funcionario" class="form-label">Estado</label>
+            <input type="text" name="estado_funcionario" class="form-control" id="estado_funcionario" required disabled value="{{ funcionarios.estado_funcionario }}" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-2">
+            <label for="telefone_funcionario" class="form-label">Telefone</label>
+            <input type="text" name="telefone_funcionario" class="form-control" id="telefone_funcionario" placeholder="ex: 21 99999-9999" disabled value="{{ funcionarios.telefone_funcionario }}" />
+        </div>
+
+        <div class="col-2">
+            <label for="salario_funcionario" class="form-label">Salário</label>
+            <input type="number" name="salario_funcionario" step="0.01" class="form-control" id="salario_funcionario" placeholder="ex: 2000,00" required disabled value="{{ funcionarios.salario_funcionario|stringformat:'.2f' }}" />
+        </div>
+
+        <div class="col-2">
+            <label for="comissao_funcionario" class="form-label">Comissão (%)</label>
+            <input type="number" name="comissao_funcionario"  class="form-control" id="comissao_funcionario" placeholder="Ex: 10" required disabled value="{{ funcionarios.comissao_funcionario }}" />
+        </div>
+
+        <div class="col-2">
+            <label for="cargo_funcionario">Cargo</label>
+            <select name="cargo_funcionario" id="cargo_funcionario" class="form-control" required disabled>
+                <option value="administrativo" {% if funcionarios.cargo_funcionario == 'administrativo' %}selected="selected"{% endif %}>Administrativo</option>
+                <option value="vendedor" {% if funcionarios.cargo_funcionario == 'vendedor' %}selected="selected"{% endif %}>Vendedor</option>
+            </select>
+        </div>
+
+        <div class="col-2">
+            <label for="status_funcionario">Status</label>
+            <select name="status_funcionario" id="status_funcionario" class="form-control" required disabled>
+                <!-- Remova qualquer 'selected' fixo -->
+                <option value="ativo" {% if funcionarios.status_funcionario == 'ativo' %}selected="selected"{% endif %}>Ativo</option>
+                <option value="inativo" {% if funcionarios.status_funcionario == 'inativo' %}selected="selected"{% endif %}>Inativo</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-12">
+            <a href="{% url 'editar-funcionario' id=funcionarios.id %}" class="btn btn-success mt-2">Editar</a>
+        </div>
+    </div>
+
+    </form>
+{% endblock %}

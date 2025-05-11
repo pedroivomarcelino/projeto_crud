@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from funcionarios.forms import FuncionarioForm
+from funcionarios.models import Funcionario
 
 
 #carrega o form de cadastro de funcionarios
@@ -9,6 +10,23 @@ def cadastrarFuncionarios(request):
         
         return render(request, 'funcionarios/cadastrar_funcionarios.html')
         
+    else:
+        return redirect('login')
+    
+#carregar form de visualizar funcionarios
+def visualizarFuncionario(request, id):
+    if request.session.get('usuario_logado'):
+        funcionarios = Funcionario.objects.get(id=id)
+        return render(request, 'funcionarios/visualizar_funcionarios.html', {'funcionarios': funcionarios})
+    else:
+        return redirect('login')
+
+
+#carregar form de edicao de funcionarios
+def editarFuncionario(request, id):
+    if request.session.get('usuario_logado'):
+        funcionarios = Funcionario.objects.get(id=id)
+        return render(request, 'funcionarios/editar_funcionarios.html', {'funcionarios': funcionarios})
     else:
         return redirect('login')
 
