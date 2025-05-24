@@ -4,6 +4,15 @@ from funcionarios.forms import FuncionarioForm
 from funcionarios.models import Funcionario
 
 
+#carrega a index de funcionarios
+def listar_funcionarios(request):
+    if request.session.get('usuario_logado'):
+        funcionarios = Funcionario.objects.all()
+        return render(request, 'funcionarios/index_funcionarios.html', {'funcionarios': funcionarios})
+    else:
+        return redirect('login')
+
+
 #carrega o form de cadastro de funcionarios
 def cadastrarFuncionarios(request):
     if request.session.get('usuario_logado'):
@@ -50,3 +59,33 @@ def inserirFuncionario(request):
         return redirect ('cadastrar-funcionarios')   
     else:
         return redirect('login')
+    
+#metodo para realizar a atualizacao de dados do funcionario
+def update_funcionarios(request, id):
+    if request.session.get('usuario_logado'):
+        funcionarios = get_object_or_404(Funcionario, id=id)
+        form = FuncionarioForm(request.POST or None, instance=funcionarios)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Funcionário atualizado com sucesso!")
+            return redirect('visualizar-funcionario', id=id)
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, f"{form.fields[field].label}:{error}", extra_tags='danger')
+        return redirect('editar-funcionario', id=id)
+    else:
+        return redirect('login')
+                                   
+        
+        
+#metodo para deletar funcionarios
+def delete_funcionarios(request, id):
+    if request.session.get('usuario_logado'):
+        funcionarios = get_object_or_404(Funcionario, id=id)
+        funcionarios.delete()
+        messages.success(request, "Funcionário excluído com sucesso!")
+        return redirect('listar-funcionarios')
+    else:
+        return redirect('login')
+    

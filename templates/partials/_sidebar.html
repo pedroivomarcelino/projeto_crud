@@ -25,9 +25,9 @@
         <div id="collapseCadastros"
             class="collapse {% if '/cadastrar-' in request.path %}show{% endif %}">
             <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{% url 'cadastrar-funcionarios' %}">Cadastrar Funcionários</a>
                 <a class="collapse-item" href="{% url 'cadastrar-cliente' %}">Cadastrar Clientes</a>
                 <a class="collapse-item" href="{% url 'cadastrar-produtos' %}">Cadastrar Produtos</a>
-                <a class="collapse-item" href="{% url 'cadastrar-funcionarios' %}">Cadastrar Funcionários</a>
                 <a class="collapse-item" href="{% url 'novo-usuario' %}">Cadastrar Usuários</a>
             </div>
         </div>
@@ -43,9 +43,10 @@
         <div id="collapsePrincipais"
             class="collapse {% if '/cliente' in request.path or '/usuario' in request.path or '/listar-' in request.path %}show{% endif %}">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{% url 'cliente-index' %}">Clientes</a>
-                <a class="collapse-item" href="{% url 'usuario-index' %}">Usuários</a>
-                <a class="collapse-item" href="{% url 'listar-produtos' %}">Estoque</a>
+                <a class="collapse-item" href="{% url 'listar-funcionarios' %}">Listar Funcionários</a>
+                <a class="collapse-item" href="{% url 'cliente-index' %}">Listar Clientes</a>
+                <a class="collapse-item" href="{% url 'usuario-index' %}">Listar Usuários</a>
+                <a class="collapse-item" href="{% url 'listar-produtos' %}">Listar Estoque</a>
             </div>
         </div>
     </li>

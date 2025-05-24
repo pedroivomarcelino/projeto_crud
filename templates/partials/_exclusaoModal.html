@@ -65,3 +65,26 @@
     </div>
   </div>
 {% endfor %}
+
+
+<!-- Modal de Exclusão de funcionarios -->
+{% for funcionario in funcionarios %}
+  
+  <div class="modal fade" id="excluirFuncionarioModal{{ funcionario.id }}" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmar Exclusão</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Tem certeza que deseja exclui o funcionário(a) <strong>{{ funcionario.nome_funcionario }}</strong> ?</p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-danger" href="{% url 'delete-funcionarios' id=funcionario.id %}">Excluir</a>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}

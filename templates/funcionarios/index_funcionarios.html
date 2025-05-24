@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+  
+  <!-- incluindo os alertas -->
+  {% include 'partials/_alertas.html' %}
+  <!-- chamando o modal de exclusao -->
+  {% include 'partials/_exclusaoModal.html' %}
+
+  <!-- DataTales Example -->
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+          <thead>
+            <tr style="text-align: center;">
+              <th>Nome do Funcionário</th>
+              <th>CPF</th>
+              <th>Cargo do Funcionário</th>
+              <th>Status do Funcionário</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for funcionario in funcionarios %}
+              <tr style="text-align: center;">
+                <td>{{ funcionario.nome_funcionario }}</td>
+                <td>{{ funcionario.cpf_funcionario }}</td>
+                <td>{{ funcionario.cargo_funcionario }}</td>
+                <td>{{ funcionario.status_funcionario }}</td>
+                <td class="text-center">
+                  <div class="d-flex justify-content-center" style="gap: 3px; flex-wrap: nowrap;">
+                    <a href="{% url 'visualizar-funcionario' id=funcionario.id %}" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="right" title="Visualizar"><ion-icon name="eye-outline"></ion-icon></a>
+                    <a href="{% url 'editar-funcionario' id=funcionario.id %}" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="right" title="Editar"><ion-icon name="create-outline"></ion-icon></a>
+                    <a  data-toggle="modal" data-target="#excluirFuncionarioModal{{ funcionario.id }}" class="btn btn-danger btn-sm" data-placement="right" title="Excluir"><ion-icon name="trash-outline"></ion-icon></a>
+                  </div>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
