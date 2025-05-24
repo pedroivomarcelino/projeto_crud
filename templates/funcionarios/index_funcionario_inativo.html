@@ -28,7 +28,7 @@
           </thead>
           <tbody>
             {% for funcionario in funcionarios %}
-              {% if funcionario.status_funcionario == 'ativo' %}
+              {% if funcionario.status_funcionario == 'inativo' %}
                 <tr style="text-align: center;">
                   <td>{{ funcionario.nome_funcionario }}</td>
                   <td>{{ funcionario.cpf_funcionario }}</td>

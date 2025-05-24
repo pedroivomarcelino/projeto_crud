@@ -11,6 +11,16 @@ def listar_funcionarios(request):
         return render(request, 'funcionarios/index_funcionarios.html', {'funcionarios': funcionarios})
     else:
         return redirect('login')
+    
+
+#carrega a index de funcionarios inativos  
+# views.py
+def listar_funcionarios_inativos(request):
+    if request.session.get('usuario_logado'):
+        funcionarios = Funcionario.objects.filter(status_funcionario='inativo')
+        return render(request, 'funcionarios/index_funcionario_inativo.html', {'funcionarios': funcionarios})
+    else:
+        return redirect('login')
 
 
 #carrega o form de cadastro de funcionarios

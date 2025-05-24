@@ -1,0 +1,42 @@
+<div class="modal fade" id="filtrarFuncionarioModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Filtrar Funcionários por Status</h5>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="formFiltroStatus">
+          <div class="form-group">
+            <label for="status_funcionario_filtro">Filtrar por status:</label>
+            <select name="status_funcionario" id="status_funcionario_filtro" class="form-control" required>
+              <option value="ativo">Ativo</option>
+              <option value="inativo">Inativo</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="btnConfirmarFiltro">Confirmar</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('btnConfirmarFiltro').addEventListener('click', function() {
+    const statusSelecionado = document.getElementById('status_funcionario_filtro').value;
+    let urlRedirecionamento = '';
+
+    if (statusSelecionado === 'ativo') {
+      urlRedirecionamento = '{% url "listar-funcionarios" %}'; // Altere para a URL correta da página de ativos
+    } else if (statusSelecionado === 'inativo') {
+      urlRedirecionamento = '{% url "listar-funcionarios-inativos" %}'; // Altere para a URL correta da página de inativos
+    }
+
+    if (urlRedirecionamento) {
+      window.location.href = urlRedirecionamento;
+    }
+  });
+</script>

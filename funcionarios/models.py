@@ -8,7 +8,7 @@ class Funcionario(models.Model):
 
     STATUS = [
         ('ativo', 'Ativo'),
-        ('desativado', 'Desativado'),
+        ('inativo', 'Inativo'),
     ]
 
     nome_funcionario = models.CharField(max_length=250, null=False, blank=False)

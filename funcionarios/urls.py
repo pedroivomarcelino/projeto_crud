@@ -1,5 +1,5 @@
 from django.urls import path
-from funcionarios.views import cadastrarFuncionarios, inserirFuncionario, visualizarFuncionario, editarFuncionario, update_funcionarios, listar_funcionarios, delete_funcionarios
+from funcionarios.views import cadastrarFuncionarios, inserirFuncionario, visualizarFuncionario, editarFuncionario, update_funcionarios, listar_funcionarios, delete_funcionarios, listar_funcionarios_inativos
 
 urlpatterns = [
     
@@ -10,4 +10,5 @@ urlpatterns = [
     path('update_funcionarios/<int:id>', update_funcionarios, name='update_funcionarios'),
     path('listar-funcionarios', listar_funcionarios, name='listar-funcionarios'),
     path('delete_funcionarios/<int:id>', delete_funcionarios, name='delete-funcionarios'),
+    path('listar-funcionarios-inativos', listar_funcionarios_inativos, name='listar-funcionarios-inativos'),
 ]
