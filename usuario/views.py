@@ -67,7 +67,7 @@ def updateUsuario(request, id):
     if request.session.get('usuario_logado'):
         usuarios = get_object_or_404(Usuario, id=id)
         if request.method == 'POST':
-            form = UsuarioForm(request.POST, instance=usuarios)
+            form = UsuarioForm(request.POST or None, instance=usuarios)
             if form.is_valid():
                 form.save()
                 messages.success(request, 'Usuário atualizado com sucesso!')

@@ -11,9 +11,10 @@
       <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
-            <tr>
+            <tr style="text-align: center;">
               <th>Nome do usuário</th>
               <th>Login</th>
+              <th>Status do usuário</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -22,6 +23,7 @@
               <tr style="text-align: center;">
                 <td>{{ usuario.nome_usuario }}</td>
                 <td>{{ usuario.login }}</td>
+                <td>{{ usuario.status_usuario }}</td>
                 <td class="text-center">
                   <div class="d-flex justify-content-center" style="gap: 3px; flex-wrap: nowrap;">
                     <a href="{% url 'visualizar-usuario' id=usuario.id %}" class="btn btn-dark btn-sm" data-toggle="tooltip" data-placement="right" title="Visualizar"><ion-icon name="eye-outline"></ion-icon></a>

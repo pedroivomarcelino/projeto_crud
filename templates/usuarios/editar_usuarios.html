@@ -7,7 +7,7 @@
       {% csrf_token %}
       {{ form.as_p }}
 
-      <div class="col-md-6">
+      <div class="col-md-3">
         <label for="nome_usuario" class="form-label">Nome usuário</label>
         <input type="text" name="nome_usuario" class="form-control" id="nome_usuario" value="{{ usuario.nome_usuario }}" required />
       </div>
@@ -20,6 +20,14 @@
       <div class="col-md-3">
         <label for="senha" class="form-label">Senha</label>
         <input type="password" name="senha" class="form-control" id="senha" value="{{ usuario.senha }}" required />
+      </div>
+
+      <div class="col-3">
+        <label for="status_usuario">Status</label>
+        <select name="status_usuario" id="status_usuario" class="form-control" required>
+          <option value="ativo" {% if usuario.status_usuario == 'ativo' %}selected="selected"{% endif %}>Ativo</option>
+          <option value="inativo" {% if usuario.status_usuario == 'inativo' %}selected="selected"{% endif %}>Inativo</option>
+        </select>
       </div>
 
       <div class="col-12">

@@ -9,6 +9,7 @@ class UsuarioForm(forms.ModelForm):
             'nome_usuario',
             'login',
             'senha',
+            'status_usuario',
         ]
         
     def __init__(self, *args, **kwargs):

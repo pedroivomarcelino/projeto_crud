@@ -2,9 +2,16 @@ from django.db import models
 from django.contrib.auth.hashers import make_password
 
 class Usuario(models.Model):
+    
+    STATUS = [
+        ('ativo', 'Ativo'),
+        ('inativo', 'Inativo'),
+    ]
+    
     nome_usuario = models.CharField(max_length=255, null=False, blank=False)
     login = models.CharField(max_length=255, null=False, blank=False)
     senha = models.CharField(max_length=255, null=False, blank=False)
+    status_usuario = models.CharField(max_length=255, choices=STATUS, default='ativo', blank=False, null=False)
     
     def set_senha(self, senha):
         """Define a senha usando hash seguro"""

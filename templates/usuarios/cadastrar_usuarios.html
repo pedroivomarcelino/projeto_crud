@@ -1,14 +1,13 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-
   {% include 'partials/_alertas.html' %}
-  
+
   <form class="row g-3" method="POST" action="{% url 'inserir-usuario' %}">
     {% csrf_token %}
     {{ form.as_p }}
 
-    <div class="col-md-6">
+    <div class="col-md-3">
       <label for="nome_usuario" class="form-label">Nome usuário</label>
       <input type="text" name="nome_usuario" class="form-control" id="nome_usuario" required />
     </div>
@@ -21,6 +20,13 @@
     <div class="col-md-3">
       <label for="senha" class="form-label">Senha</label>
       <input type="password" name="senha" class="form-control" id="senha" required />
+    </div>
+
+    <div class="col-3">
+      <label for="status_usuario">Status</label>
+      <select name="status_usuario" id="status_usuario" class="form-control" required>
+        <option value="ativo" selected>Ativo</option>
+      </select>
     </div>
 
     <div class="col-12">
